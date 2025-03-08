@@ -5,3 +5,4 @@ pymongo
 certifi
 pymongo[srv]
 -e . 
+scikit-learn
