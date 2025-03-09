@@ -11,7 +11,7 @@ from networksecurity.entity.artifact_entity import DataIngestionArtifact
 import os
 import sys
 import pandas as pd
-import numpy
+import numpy as np
 import pymongo
 from typing import List
 from sklearn.model_selection import train_test_split

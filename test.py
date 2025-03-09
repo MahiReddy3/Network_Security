@@ -1,6 +1,10 @@
 
 from pymongo.mongo_client import MongoClient
 from pymongo.server_api import ServerApi
+from dotenv import load_dotenv
+import os
+load_dotenv()
+MONGO_DB_URL=os.getenv("MONGO_DB_URL")
 
 uri =MONGO_DB_URL
 
