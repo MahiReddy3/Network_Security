@@ -4,7 +4,7 @@ import os,sys
 import numpy as np
 import pickle
 from networksecurity.exception.exception import NetworkSecurityException
-from networksecurity.logger.logger import 
+from networksecurity.logger.logger import logging
 
 
 
