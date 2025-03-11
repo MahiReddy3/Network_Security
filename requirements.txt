@@ -4,7 +4,11 @@ numpy
 pymongo
 certifi
 pymongo[srv]
--e . 
+
 scikit-learn
 dill
 pyyaml
+xgboost
+
+
+-e . 
