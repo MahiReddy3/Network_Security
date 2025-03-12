@@ -4,8 +4,3 @@ Version: 0.0.1
 Author: Mahendra Reddy
 Author-email: kapulurumahendrareddy@gmail.com
 License-File: LICENSE
-Requires-Dist: python-dotenv
-Requires-Dist: pandas
-Requires-Dist: numpy
-Requires-Dist: pymongo
-Requires-Dist: certifi

@@ -38,7 +38,7 @@ class ModelEvaluation:
 
             df = pd.concat([train_df,test_df])
             
-            print(df)
+            #print(df)
             y_true = df[TARGET_COLUMN]
             
             y_true.replace(-1, 0, inplace=True)
@@ -94,11 +94,11 @@ class ModelEvaluation:
 
             model_eval_report = model_evaluation_artifact.__dict__
             
-            #print(model_eval_report)
+            print(model_eval_report)
 
             #save the report
-            #dir_path=os.path.dirname(self.model_eval_config.model_evaluation_dir)
-            #os.makedirs(dir_path,exist_ok=True)
+            dir_path=os.path.dirname(self.model_eval_config.model_evaluation_dir)
+            os.makedirs(dir_path,exist_ok=True)
         
 
             write_yaml_file(self.model_eval_config.report_file_path, model_eval_report)
