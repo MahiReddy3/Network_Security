@@ -13,4 +13,7 @@ fastapi
 uvicorn
 ipykernal
 apache-airflow
+mlflow
+dvc
+starlette
 -e . 
