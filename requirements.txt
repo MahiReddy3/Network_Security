@@ -10,7 +10,7 @@ pyyaml
 xgboost
 fastapi
 uvicorn
-ipykernal
+ipykernel
 apache-airflow
 mlflow
 dvc
