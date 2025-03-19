@@ -81,15 +81,11 @@ jobs:
         id: login-ecr
         uses: aws-actions/amazon-ecr-login@v1
       
-      - name: Debug AWS ECR Secrets
-        run: |
-             "AWS_ECR_LOGIN_URI: '${{ secrets.AWS_ECR_LOGIN_URI }}'"
-              echo "ECR_REPOSITORY_NAME: '${{ secrets.ECR_REPOSITORY_NAME }}'"
-              echo "Full Image Name: '${{ secrets.AWS_ECR_LOGIN_URI }}:latest'"
+      
 
       - name: Pull latest images
         run: |
-         docker pull ${{secrets.AWS_ECR_LOGIN_URI}}:latest
+         docker pull ${{secrets.AWS_ECR_LOGIN_URI}}/${{secrets.ECR_REPOSITORY_NAME}}:latest
 
       
        
