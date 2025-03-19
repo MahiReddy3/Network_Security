@@ -79,20 +79,41 @@ jobs:
 
       - name: Login to Amazon ECR
         id: login-ecr
-        uses: aws-actions/amazon-ecr-login@v1
-      
-      
+        run: |
+          aws ecr get-login-password --region ${{ secrets.AWS_REGION }} | docker login --username AWS --password-stdin ${{ secrets.AWS_ECR_LOGIN_URI }}
+
+      - name: Clean up Docker system before deployment
+        run: |
+          docker stop networksecurity || true
+          docker rm networksecurity || true
+          docker container prune -f
+          docker image prune -a -f
+          docker volume prune -f
+          docker network prune -f
+          df -h
+
+      - name: Check Disk Space Before and After Cleanup
+        run: |
+          echo "Disk space before cleanup:"
+          df -h
+          docker system prune -a -f
+          echo "Disk space after cleanup:"
+          df -h
 
       - name: Pull latest images
         run: |
-         docker pull ${{secrets.AWS_ECR_LOGIN_URI}}/${{secrets.ECR_REPOSITORY_NAME}}:latest
+          echo "Pulling image: ${{ secrets.AWS_ECR_LOGIN_URI }}/${{ secrets.ECR_REPOSITORY_NAME }}:latest"
+          docker pull ${{ secrets.AWS_ECR_LOGIN_URI }}/${{ secrets.ECR_REPOSITORY_NAME }}:latest
 
-      
-       
       - name: Run Docker Image to serve users
         run: |
-         docker run -d -p 80:8080 --name=networksecurity -e 'MONGO_DB_URL=${{ secrets.MONGO_DB_URL }}' -e 'AWS_ACCESS_KEY_ID=${{ secrets.AWS_ACCESS_KEY_ID }}' -e 'AWS_SECRET_ACCESS_KEY=${{ secrets.AWS_SECRET_ACCESS_KEY }}' -e 'AWS_REGION=${{ secrets.AWS_REGION }}'  ${{secrets.AWS_ECR_LOGIN_URI}}/${{ secrets.ECR_REPOSITORY_NAME }}:latest
+          docker run -d -p 80:8080 --name=networksecurity \
+            -e "MONGO_DB_URL=${{ secrets.MONGO_DB_URL }}" \
+            -e "AWS_ACCESS_KEY_ID=${{ secrets.AWS_ACCESS_KEY_ID }}" \
+            -e "AWS_SECRET_ACCESS_KEY=${{ secrets.AWS_SECRET_ACCESS_KEY }}" \
+            -e "AWS_REGION=${{ secrets.AWS_REGION }}" \
+            ${{ secrets.AWS_ECR_LOGIN_URI }}/${{ secrets.ECR_REPOSITORY_NAME }}:latest
 
       - name: Clean previous images and containers
         run: |
-         docker system prune -f
+          docker system prune -f
