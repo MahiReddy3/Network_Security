@@ -90,8 +90,8 @@ jobs:
       
       - name: Stop & Remove Existing Container
         run: |
-           docker ps -q --filter "name=networksecurity" | grep -q . && docker stop networksecurity || true
-           docker ps -q --filter "name=networksecurity" | grep -q . && docker rm -fv networksecurity || true
+           docker ps -q --filter "name=networksecurity_1" | grep -q . && docker stop networksecurity_1 || true
+           docker ps -q --filter "name=networksecurity_1" | grep -q . && docker rm -fv networksecurity_1 || true
 
         
        

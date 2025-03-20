@@ -4,6 +4,9 @@ RUN mkdir /app
 COPY . /app/
 WORKDIR /app/
 RUN pip3 install -r requirements.txt
+ENV AWS_DEFAULT_REGION = "eu-north-1"
+ENV BUCKET_NAME="mahimlopsbucket"
+ENV PREDICTION_BUCKET_NAME="mahi-network-datasource"
 ENV AIRFLOW_HOME="/app/airflow"
 ENV AIRFLOW_CORE_DAGBAG_IMPORT_TIMEOUT=1000
 ENV AIRFLOW_CORE_ENABLE_XCOM_PICKLING=True
