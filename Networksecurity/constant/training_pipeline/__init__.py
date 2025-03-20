@@ -85,6 +85,6 @@ MODEL_PUSHER_DIR_NAME = "model_pusher"
 MODEL_PUSHER_SAVED_MODEL_DIR = SAVED_MODEL_DIR
 
 TRAINING_BUCKET_NAME = "mahimlopsbucket"
-PREDICTION_BUCKET_NAME = "my-network-datasource"
+PREDICTION_BUCKET_NAME = "mahi-network-datasource"
 PREDICTION_DIR="prediction"
 
