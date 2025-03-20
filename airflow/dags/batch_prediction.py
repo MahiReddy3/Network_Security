@@ -36,7 +36,7 @@ with DAG(
             start_batch_prediction(input_file_path=os.path.join(input_dir,file_name))
     
     def sync_prediction_dir_to_s3_bucket(**kwargs):
-        bucket_name = "my-network-datasource"
+        bucket_name = "mahi-network-datasource"
         #upload prediction folder to predictionfiles folder in s3 bucket
         os.system(f"aws s3 sync /app/prediction s3://{bucket_name}/prediction_files")
     
