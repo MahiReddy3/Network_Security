@@ -10,6 +10,8 @@ from networksecurity.utils.main_utils.utils import save_object,load_object,write
 from networksecurity.utils.ml_utils.model.estimator import ModelResolver
 from networksecurity.constant.training_pipeline import TARGET_COLUMN
 import pandas  as  pd
+import mlflow
+import mlflow.sklearn
 
 
 class ModelEvaluation:
@@ -103,7 +105,7 @@ class ModelEvaluation:
 
             write_yaml_file(self.model_eval_config.report_file_path, model_eval_report)
             logging.info(f"Model evaluation artifact: {model_evaluation_artifact}")
-            """   
+              
             with mlflow.start_run():
                 f1_score=trained_metric.f1_score
                 precision_score=trained_metric.precision_score
@@ -114,7 +116,7 @@ class ModelEvaluation:
                 mlflow.log_metric("recall_score",recall_score)
                 
                 mlflow.sklearn.log_model(train_model,"model")
-            """    
+               
             return model_evaluation_artifact
         except Exception as e:
                 raise NetworkSecurityException(e,sys)
